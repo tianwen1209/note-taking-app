@@ -63,14 +63,6 @@ class scribbleViewController: UIViewController, UIIndirectScribbleInteractionDel
         // "elements" that represent virtual writing areas.
         let indirectScribbleInteraction = UIIndirectScribbleInteraction(delegate: self)
         stickerContainerView.addInteraction(indirectScribbleInteraction)
-
-        // The Engraving field is a label that looks like a text field that only
-        // becomes editable on tap. It is made "writable" with another
-        // UIIndirectScribbleInteraction it installs on itself.
-        view.addSubview(engravingField)
-        engravingField.translatesAutoresizingMaskIntoConstraints = false
-        engravingField.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
-        engravingField.centerYAnchor.constraint(equalTo: self.view.topAnchor, constant: 120).isActive = true
         
         // Background tap recognizer.
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTapGesture))
