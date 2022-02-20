@@ -478,7 +478,6 @@ class DrawViewController: UIViewController, UIIndirectScribbleInteractionDelegat
         guard let stickerField = textField as? StickerTextField else {
             return
         }
-        
         removeIfEmpty(stickerField)
     }
     
@@ -491,7 +490,6 @@ class DrawViewController: UIViewController, UIIndirectScribbleInteractionDelegat
             stickerField.resignFirstResponder()
             break
         }
-
         engravingField.finishEditing()
     }
     
@@ -515,6 +513,7 @@ class DrawViewController: UIViewController, UIIndirectScribbleInteractionDelegat
         stickerContainerView.addSubview(stickerField)
         stickerPositions.append(location) //added by yinqiu
         print("in function 8")
+        reloadNavigationItems()
         return stickerField
     }
 
