@@ -56,6 +56,7 @@
 		F635D4A927BF28F0002BBC48 /* StickerTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = F635D4A827BF28F0002BBC48 /* StickerTextField.swift */; };
 		F635D4AB27BF296D002BBC48 /* EngravingFakeField.swift in Sources */ = {isa = PBXBuildFile; fileRef = F635D4AA27BF296D002BBC48 /* EngravingFakeField.swift */; };
 		F635D4AF27BF3EB6002BBC48 /* scribble.swift in Sources */ = {isa = PBXBuildFile; fileRef = F635D4AE27BF3EB6002BBC48 /* scribble.swift */; };
+		F635D4B327C1AC72002BBC48 /* TextGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F635D4B227C1AC72002BBC48 /* TextGenerator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -113,6 +114,7 @@
 		F635D4A827BF28F0002BBC48 /* StickerTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StickerTextField.swift; sourceTree = "<group>"; };
 		F635D4AA27BF296D002BBC48 /* EngravingFakeField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EngravingFakeField.swift; sourceTree = "<group>"; };
 		F635D4AE27BF3EB6002BBC48 /* scribble.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = scribble.swift; sourceTree = "<group>"; };
+		F635D4B227C1AC72002BBC48 /* TextGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextGenerator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -286,6 +288,7 @@
 			isa = PBXGroup;
 			children = (
 				A6E3B84A25B347C100C65157 /* DrawViewController.swift */,
+				F635D4B227C1AC72002BBC48 /* TextGenerator.swift */,
 				F635D4A427BEFA35002BBC48 /* handwritten.jpg */,
 				A6E3B84D25B3495800C65157 /* DrawExtensions.swift */,
 				A6E3B86425B372A800C65157 /* ExportActions.swift */,
@@ -412,6 +415,7 @@
 				A61A616425EEB34E0030684C /* UndoButton.swift in Sources */,
 				A6E3B82F25B32B0700C65157 /* InitialViewController.swift in Sources */,
 				A6E3B83A25B333EC00C65157 /* NodeCell.swift in Sources */,
+				F635D4B327C1AC72002BBC48 /* TextGenerator.swift in Sources */,
 				A65F231D25B5C1B000A0E870 /* IconSettingsCell.swift in Sources */,
 				A6F60F8525CAA2CC002CAAE4 /* Data.swift in Sources */,
 				A6BB131B25B472F9008C5D8A /* AppearanceSettingsCell.swift in Sources */,

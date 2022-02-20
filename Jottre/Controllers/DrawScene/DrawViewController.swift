@@ -13,6 +13,9 @@ class DrawViewController: UIViewController, UIIndirectScribbleInteractionDelegat
 //class ViewController: UIViewController, UIIndirectScribbleInteractionDelegate, UIScribbleInteractionDelegate, UITextFieldDelegate {
     
     // MARK: - Properties
+    //by yinqiu
+    
+    var stickerPositions: [CGPoint] = [] // added by yinqiu, the positions of these stickerFields
     
     //by tianwen:propertiies of scribble
     var stickerTextFields: [StickerTextField] = []
@@ -163,7 +166,7 @@ class DrawViewController: UIViewController, UIIndirectScribbleInteractionDelegat
         img=img?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal)
             
         //let items1=UIBarButtonItem(image: img, style: UIBarButtonItem.Style.plain, target: self, action: #selector(handwriting))
-        let items1=UIBarButtonItem(image: img, style: UIBarButtonItem.Style.plain, target: self, action: #selector(scribble))
+        let items1=UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.compose, target: self, action: #selector(scribble))
         let items2=UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.action, target: self, action: #selector(exportDrawing))
             
         self.navigationItem.rightBarButtonItems=[items2,items1]
@@ -339,6 +342,18 @@ class DrawViewController: UIViewController, UIIndirectScribbleInteractionDelegat
     
     func writeDrawing() {
         DispatchQueue.main.async {
+            let practiceScale: CGFloat = 0.6 // added by yinqiu, the font size
+                        let textGenerator = TextGenerator()
+                        //var total_text = ""
+                        var index = 0
+                        if !self.stickerTextFields.isEmpty{
+                            for i in self.stickerTextFields{
+                                //print("the textfiled is", type(of: i.text)) //added by yqliu
+                                //self.stickerPositions[index]
+                                self.canvasView.drawing.append(textGenerator.synthesizeTextDrawing(text: i.text ?? "", practiceScale: practiceScale, lineWidth: self.view.bounds.width, position: self.stickerPositions[index]))
+                                index += 1
+                            }
+                        }
             self.hasModifiedDrawing = false
             self.node.setDrawing(drawing: self.canvasView.drawing)
         }
@@ -354,7 +369,7 @@ class DrawViewController: UIViewController, UIIndirectScribbleInteractionDelegat
         let nonWritableWidth = 0.00000001
         let nonWritableHeight = 0.00000001
         let centerRect = CGRect(x: midX, y: midY, width: 0.0, height: 0.0).insetBy(dx: -nonWritableWidth, dy: -nonWritableHeight)
-        
+        print("in function 1")
         return !centerRect.contains(location)
     }
     
@@ -363,6 +378,7 @@ class DrawViewController: UIViewController, UIIndirectScribbleInteractionDelegat
     func indirectScribbleInteraction(_ interaction: UIInteraction, shouldDelayFocusForElement elementIdentifier: UUID) -> Bool {
         // When writing on a blank area, wait until the user stops writing
         // before triggering element focus, to avoid writing distractions.
+        print("in function 2")
         return elementIdentifier == rootViewElementID
     }
     
@@ -387,6 +403,7 @@ class DrawViewController: UIViewController, UIIndirectScribbleInteractionDelegat
 
         // Call the completion handler with the array of element identifiers.
         completion(availableElementIDs)
+        print("in function 3")
     }
     
     func indirectScribbleInteraction(_ interaction: UIInteraction, isElementFocused elementIdentifier: UUID) -> Bool {
@@ -397,6 +414,7 @@ class DrawViewController: UIViewController, UIIndirectScribbleInteractionDelegat
         } else {
             // For sticker elements, indicate if the corresponding text field
             // is first responder.
+            print("in function 4")
             return stickerFieldForIdentifier(elementIdentifier)?.isFirstResponder ?? false
         }
     }
@@ -414,7 +432,7 @@ class DrawViewController: UIViewController, UIIndirectScribbleInteractionDelegat
             // frame for the whole view.
             elementRect = stickerContainerView.frame
         }
-        
+        print("in function 5")
         return elementRect
     }
         
@@ -437,6 +455,7 @@ class DrawViewController: UIViewController, UIIndirectScribbleInteractionDelegat
         // It could be called asynchronously if, for example, there was an
         // animation to insert a new sticker field.
         completion(stickerField)
+        print("in function 6")
     }
     
     // MARK: - Text Field Event Handling
@@ -481,6 +500,7 @@ class DrawViewController: UIViewController, UIIndirectScribbleInteractionDelegat
     
     func stickerFieldForIdentifier(_ identifier: UUID) -> StickerTextField? {
         for stickerField in stickerTextFields where stickerField.identifier == identifier {
+            print("in function 7")
             return stickerField
         }
         return nil
@@ -494,7 +514,8 @@ class DrawViewController: UIViewController, UIIndirectScribbleInteractionDelegat
         stickerTextFields.append(stickerField)
 
         stickerContainerView.addSubview(stickerField)
-
+        stickerPositions.append(location) //added by yinqiu
+        print("in function 8")
         return stickerField
     }
 
@@ -504,6 +525,7 @@ class DrawViewController: UIViewController, UIIndirectScribbleInteractionDelegat
         }
         stickerField.resignFirstResponder()
         stickerField.removeFromSuperview()
+        print("in function 9")
     }
     
     @discardableResult
