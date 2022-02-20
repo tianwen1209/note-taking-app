@@ -343,17 +343,17 @@ class DrawViewController: UIViewController, UIIndirectScribbleInteractionDelegat
     func writeDrawing() {
         DispatchQueue.main.async {
             let practiceScale: CGFloat = 0.6 // added by yinqiu, the font size
-                        let textGenerator = TextGenerator()
-                        //var total_text = ""
-                        var index = 0
-                        if !self.stickerTextFields.isEmpty{
-                            for i in self.stickerTextFields{
-                                //print("the textfiled is", type(of: i.text)) //added by yqliu
-                                //self.stickerPositions[index]
-                                self.canvasView.drawing.append(textGenerator.synthesizeTextDrawing(text: i.text ?? "", practiceScale: practiceScale, lineWidth: self.view.bounds.width, position: self.stickerPositions[index]))
-                                index += 1
-                            }
-                        }
+            let textGenerator = TextGenerator()
+            //var total_text = ""
+            var index = 0
+            if !self.stickerTextFields.isEmpty{
+                for i in self.stickerTextFields{
+                    //print("the textfiled is", type(of: i.text)) //added by yqliu
+                    //self.stickerPositions[index]
+                    self.canvasView.drawing.append(textGenerator.synthesizeTextDrawing(text: i.text ?? "", practiceScale: practiceScale, lineWidth: self.view.bounds.width, position: self.stickerPositions[index]))
+                    index += 1
+                }
+            }
             self.hasModifiedDrawing = false
             self.node.setDrawing(drawing: self.canvasView.drawing)
         }
@@ -382,8 +382,7 @@ class DrawViewController: UIViewController, UIIndirectScribbleInteractionDelegat
         return elementIdentifier == rootViewElementID
     }
     
-    func indirectScribbleInteraction(_ interaction: UIInteraction, requestElementsIn rect: CGRect,
-                                     completion: @escaping ([ElementIdentifier]) -> Void) {
+    func indirectScribbleInteraction(_ interaction: UIInteraction, requestElementsIn rect: CGRect, completion: @escaping ([ElementIdentifier]) -> Void) {
 
         var availableElementIDs: [UUID] = []
 
@@ -512,7 +511,7 @@ class DrawViewController: UIViewController, UIIndirectScribbleInteractionDelegat
         stickerField.delegate = self
         stickerField.addTarget(self, action: #selector(handleTextFieldDidChange(_:)), for: .editingChanged)
         stickerTextFields.append(stickerField)
-
+        self.hasModifiedDrawing = true //added by yinqiu, 2022/2/20
         stickerContainerView.addSubview(stickerField)
         stickerPositions.append(location) //added by yinqiu
         print("in function 8")

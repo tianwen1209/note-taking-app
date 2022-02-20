@@ -74,13 +74,13 @@ struct TextGenerator {
         }
         
         var textDrawing = PKDrawing()
-        let textMargin: CGFloat = 1
+        let textMargin: CGFloat = 0
         let lineHeight: CGFloat = 40 * practiceScale
-        let spaceWidth: CGFloat = 20 * practiceScale
+        let spaceWidth: CGFloat = 40 * practiceScale
         let letterSpacing: CGFloat = 1
         var adjusted_position = CGPoint()
-        adjusted_position.x = position.x - 100
-        adjusted_position.y = position.y - 100
+        adjusted_position.x = position.x - 80
+        adjusted_position.y = position.y - 80
         var letterPosition = adjusted_position
         
         //by tianwen
