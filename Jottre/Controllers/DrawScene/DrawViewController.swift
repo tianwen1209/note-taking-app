@@ -57,6 +57,7 @@ class DrawViewController: UIViewController, UIIndirectScribbleInteractionDelegat
             canvasView.drawingPolicy = .default
             canvasView.alwaysBounceVertical = true
             canvasView.maximumZoomScale = 3
+            canvasView.backgroundColor = .white
         return canvasView
     }()
     
